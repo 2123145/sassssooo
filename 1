@@ -1,0 +1,67 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    enum City
+    {
+        Kyiv = 1,
+        Lviv,
+        Odesa,
+        Madrid,
+        Barcelona,
+        Valencia,
+        Rome,
+        Milan
+    }
+
+    static void Main()
+    {
+        Console.WriteLine("Перелiк мiст:");
+
+        Console.WriteLine("Україна:");
+        Console.WriteLine($"{(int)City.Kyiv} - {City.Kyiv}");
+        Console.WriteLine($"{(int)City.Lviv} - {City.Lviv}");
+        Console.WriteLine($"{(int)City.Odesa} - {City.Odesa}");
+
+        Console.WriteLine("Iспанiя:");
+        Console.WriteLine($"{(int)City.Madrid} - {City.Madrid}");
+        Console.WriteLine($"{(int)City.Barcelona} - {City.Barcelona}");
+        Console.WriteLine($"{(int)City.Valencia} - {City.Valencia}");
+
+        Console.WriteLine("Iталiя:");
+        Console.WriteLine($"{(int)City.Rome} - {City.Rome}");
+        Console.WriteLine($"{(int)City.Milan} - {City.Milan}");
+
+        Console.WriteLine();
+
+        Console.WriteLine("Введiть номери мiст, якi ви хочете вiдвiдати:");
+        string input = Console.ReadLine();
+
+        string[] cityNumbers = input.Split(',');
+
+        Console.WriteLine("Прiзвище автора програми: Овсiєнко");
+
+        Console.WriteLine("Мiста, якi ви хочете вiдвiдати:");
+
+        Console.WriteLine("Україна:");
+        PrintCities(cityNumbers, City.Kyiv, City.Lviv, City.Odesa);
+
+        Console.WriteLine("Iспанiя:");
+        PrintCities(cityNumbers, City.Madrid, City.Barcelona, City.Valencia);
+
+        Console.WriteLine("Iталiя:");
+        PrintCities(cityNumbers, City.Rome, City.Milan);
+    }
+
+    static void PrintCities(string[] cityNumbers, params City[] cities)
+    {
+        foreach (string number in cityNumbers)
+        {
+            if (Enum.TryParse(number.Trim(), out City city) && Array.IndexOf(cities, city) != -1)
+            {
+                Console.WriteLine($"{(int)city} - {city}");
+            }
+        }
+    }
+}
